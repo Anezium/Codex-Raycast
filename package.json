@@ -1,0 +1,352 @@
+{
+  "name": "codex-chat",
+  "title": "Codex Chat",
+  "description": "Chat with Codex from Raycast using your ChatGPT/Codex sign-in instead of API keys.",
+  "icon": "icon.png",
+  "author": "anezium",
+  "license": "MIT",
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Developer Tools",
+    "Productivity"
+  ],
+  "commands": [
+    {
+      "name": "chat",
+      "title": "Chat",
+      "subtitle": "Codex",
+      "description": "Browse Codex discussions, continue a topic, or start a new one.",
+      "mode": "view",
+      "keywords": [
+        "chatgpt",
+        "openai",
+        "codex",
+        "threads"
+      ]
+    },
+    {
+      "name": "new-chat",
+      "title": "New Chat",
+      "subtitle": "Codex",
+      "description": "Start a Codex chat directly from Raycast.",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "prompt",
+          "type": "text",
+          "placeholder": "Ask Codex...",
+          "required": false
+        }
+      ],
+      "keywords": [
+        "chatgpt",
+        "openai",
+        "codex",
+        "ask"
+      ]
+    },
+    {
+      "name": "ask",
+      "title": "Ask",
+      "subtitle": "Codex Fast",
+      "description": "Ask Codex immediately with the fast preset.",
+      "mode": "view",
+      "arguments": [
+        {
+          "name": "prompt",
+          "type": "text",
+          "placeholder": "Ask Codex...",
+          "required": true
+        }
+      ],
+      "keywords": [
+        "fast",
+        "quick",
+        "chatgpt",
+        "openai",
+        "codex",
+        "new",
+        "chat"
+      ]
+    },
+    {
+      "name": "codex-status",
+      "title": "Codex Status",
+      "subtitle": "Codex",
+      "description": "Check Codex login status and start ChatGPT OAuth sign-in.",
+      "mode": "view",
+      "keywords": [
+        "login",
+        "oauth",
+        "auth",
+        "settings"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "codexRuntime",
+      "title": "Codex Runtime",
+      "description": "Choose which Codex binary Raycast should use.",
+      "type": "dropdown",
+      "required": false,
+      "default": "auto",
+      "data": [
+        {
+          "title": "Auto",
+          "value": "auto"
+        },
+        {
+          "title": "Bundled Runtime",
+          "value": "bundled"
+        },
+        {
+          "title": "Installed Codex App",
+          "value": "application"
+        },
+        {
+          "title": "codex from PATH",
+          "value": "path"
+        },
+        {
+          "title": "Custom Path",
+          "value": "custom"
+        }
+      ]
+    },
+    {
+      "name": "codexPath",
+      "title": "Custom Codex CLI Path",
+      "description": "Optional absolute path to a Codex CLI binary. Used when Runtime is Custom; Auto also honors this for existing overrides.",
+      "type": "textfield",
+      "required": false,
+      "placeholder": "/Applications/Codex.app/Contents/Resources/codex"
+    },
+    {
+      "name": "serviceTier",
+      "title": "Codex Speed",
+      "description": "Service tier used for Codex turns. Fast maps to Codex priority mode and may increase usage.",
+      "type": "dropdown",
+      "required": false,
+      "default": "inherit",
+      "data": [
+        {
+          "title": "Use Codex Config",
+          "value": "inherit"
+        },
+        {
+          "title": "Standard",
+          "value": "default"
+        },
+        {
+          "title": "Fast",
+          "value": "priority"
+        }
+      ]
+    },
+    {
+      "name": "defaultModel",
+      "title": "Default Model",
+      "description": "Model used for new chats and turns unless overridden in the message form.",
+      "type": "dropdown",
+      "required": false,
+      "default": "gpt-5.5",
+      "data": [
+        {
+          "title": "GPT-5.5",
+          "value": "gpt-5.5"
+        },
+        {
+          "title": "GPT-5.4",
+          "value": "gpt-5.4"
+        },
+        {
+          "title": "GPT-5.4 Mini",
+          "value": "gpt-5.4-mini"
+        },
+        {
+          "title": "GPT-5.3 Codex Spark",
+          "value": "gpt-5.3-codex-spark"
+        }
+      ]
+    },
+    {
+      "name": "defaultEffort",
+      "title": "Default Thinking Effort",
+      "description": "Reasoning effort used for turns unless overridden in the message form.",
+      "type": "dropdown",
+      "required": false,
+      "default": "medium",
+      "data": [
+        {
+          "title": "Low",
+          "value": "low"
+        },
+        {
+          "title": "Medium",
+          "value": "medium"
+        },
+        {
+          "title": "High",
+          "value": "high"
+        },
+        {
+          "title": "Extra High",
+          "value": "xhigh"
+        }
+      ]
+    },
+    {
+      "name": "defaultCwd",
+      "title": "Default Working Directory",
+      "description": "Optional default working directory for Codex chats.",
+      "type": "directory",
+      "required": false
+    },
+    {
+      "name": "defaultSandbox",
+      "title": "Default Sandbox",
+      "description": "Sandbox policy used for Codex threads started or resumed from Raycast. Use Codex Config keeps your ~/.codex/config.toml setting.",
+      "type": "dropdown",
+      "required": false,
+      "default": "inherit",
+      "data": [
+        {
+          "title": "Use Codex Config",
+          "value": "inherit"
+        },
+        {
+          "title": "Read Only",
+          "value": "read-only"
+        },
+        {
+          "title": "Workspace Write",
+          "value": "workspace-write"
+        },
+        {
+          "title": "Danger Full Access",
+          "value": "danger-full-access"
+        }
+      ]
+    },
+    {
+      "name": "defaultApprovalPolicy",
+      "title": "Default Approval Policy",
+      "description": "Approval policy for Codex threads. Use Codex Config keeps your ~/.codex/config.toml setting.",
+      "type": "dropdown",
+      "required": false,
+      "default": "inherit",
+      "data": [
+        {
+          "title": "Use Codex Config",
+          "value": "inherit"
+        },
+        {
+          "title": "Never",
+          "value": "never"
+        },
+        {
+          "title": "On Request",
+          "value": "on-request"
+        },
+        {
+          "title": "Untrusted",
+          "value": "untrusted"
+        }
+      ]
+    },
+    {
+      "name": "defaultSubagents",
+      "title": "Subagents",
+      "description": "Ask Codex to use subagents by default when starting or sending a message.",
+      "type": "checkbox",
+      "required": false,
+      "label": "Ask Codex to spin up subagents by default",
+      "default": false
+    },
+    {
+      "name": "fastModel",
+      "title": "Ask Model",
+      "description": "Model used by the Ask command.",
+      "type": "dropdown",
+      "required": false,
+      "default": "gpt-5.5",
+      "data": [
+        {
+          "title": "GPT-5.5",
+          "value": "gpt-5.5"
+        },
+        {
+          "title": "GPT-5.4",
+          "value": "gpt-5.4"
+        },
+        {
+          "title": "GPT-5.4 Mini",
+          "value": "gpt-5.4-mini"
+        },
+        {
+          "title": "GPT-5.3 Codex Spark",
+          "value": "gpt-5.3-codex-spark"
+        }
+      ]
+    },
+    {
+      "name": "fastEffort",
+      "title": "Ask Thinking Effort",
+      "description": "Reasoning effort used by the Ask command.",
+      "type": "dropdown",
+      "required": false,
+      "default": "low",
+      "data": [
+        {
+          "title": "Low",
+          "value": "low"
+        },
+        {
+          "title": "Medium",
+          "value": "medium"
+        },
+        {
+          "title": "High",
+          "value": "high"
+        },
+        {
+          "title": "Extra High",
+          "value": "xhigh"
+        }
+      ]
+    },
+    {
+      "name": "fastSubagents",
+      "title": "Ask Subagents",
+      "description": "Ask Codex to use subagents when running Ask.",
+      "type": "checkbox",
+      "required": false,
+      "label": "Ask Codex to spin up subagents in Ask",
+      "default": false
+    }
+  ],
+  "scripts": {
+    "prepare-codex-runtime": "node scripts/prepare-codex-runtime.mjs",
+    "dev": "node scripts/prepare-codex-runtime.mjs && ray develop -I",
+    "build": "node scripts/prepare-codex-runtime.mjs && ray build -e dist",
+    "lint": "ray lint",
+    "fix-lint": "ray lint --fix"
+  },
+  "dependencies": {
+    "@openai/codex": "0.142.3",
+    "@raycast/api": "^1.104.20",
+    "@raycast/utils": "^2.2.7",
+    "react": "19.0.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.2.0",
+    "@types/node": "^22.19.17",
+    "@types/react": "^19.0.10",
+    "eslint": "^9.30.0",
+    "prettier": "^3.6.0",
+    "typescript": "^5.8.3"
+  }
+}
