@@ -36,3 +36,7 @@ Raycast's official docs use `npm install && npm run dev`; this workspace current
 ## Subagents
 
 Codex only starts subagents when explicitly asked. In message forms, enable `Use Subagents` to prepend a delegation instruction that asks Codex to spawn parallel explorer/worker subagents and consolidate their findings.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
